@@ -1,0 +1,68 @@
+buildscript {
+    ext.kotlin_version = '1.1.4-3'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id "com.jfrog.bintray" version "1.7"
+}
+
+group 'com.shoutoutsoftware'
+version '0.0.1'
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+    apply plugin: 'java'
+}
+
+
+bintray {
+    user = 'shoutoutsoftware'
+    key = '8bf8558553c6339a2c28084adb6829ed71c90658'
+    configurations = ['archives']
+    pkg {
+        repo = 'libraries'
+        name = 'Sift'
+        userOrg = user
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/ShoutOutSoftware/Sift-Kotlin.git'
+        //noinspection GroovyAssignabilityCheck
+        version {
+            name = '0.0.1'
+            desc = 'A lightweight HashMap reading library'
+        }
+    }
+}
