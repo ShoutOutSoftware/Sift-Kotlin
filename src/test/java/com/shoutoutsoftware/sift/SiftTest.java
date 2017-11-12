@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class SiftTest {
 
-    private HashMap<String, Object> stringData = new HashMap<>();
+    private final HashMap<String, Object> stringData = new HashMap<>();
 
     @Before
     public void initData() {

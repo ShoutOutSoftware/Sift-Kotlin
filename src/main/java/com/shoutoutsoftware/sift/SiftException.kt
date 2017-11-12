@@ -7,4 +7,4 @@ import java.lang.Exception
  * Copyright © 2017 ShoutOut Software. All rights reserved.
  */
 
-public class SiftException(message: String?) : Exception(message)
+class SiftException(message: String?) : Exception(message)

@@ -7,23 +7,17 @@ import java.util.*
  * Copyright © 2017 ShoutOut Software. All rights reserved.
  */
 
-// Todo - functions should accept HashMap<String, Any?>
+class Sift {
 
+    companion object {
 
-public class Sift {
-
-    public companion object {
-
-        public fun readString(map: HashMap<String, Any>, key: String, defaultValue: String?): String? {
-            return read(map, key, defaultValue)
-        }
+        fun readString(map: HashMap<String, Any?>, key: String, defaultValue: String?): String? =
+                read(map, key, defaultValue)
 
         @Throws(SiftException::class)
-        public fun readString(map: HashMap<String, Any>, key: String): String {
-            return read(map, key)
-        }
+        fun readString(map: HashMap<String, Any?>, key: String): String = read(map, key)
 
-        private inline fun <reified T : Any> read(map: HashMap<String, Any>, key: String, defaultValue: T?): T? {
+        private inline fun <reified T : Any> read(map: HashMap<String, Any?>, key: String, defaultValue: T?): T? {
             return try {
                 read(map, key)
             } catch (e: SiftException) {
@@ -32,7 +26,7 @@ public class Sift {
         }
 
         @Throws(SiftException::class)
-        private inline fun <reified T : Any> read(map: HashMap<String, Any>, key: String): T {
+        private inline fun <reified T : Any> read(map: HashMap<String, Any?>, key: String): T {
             if (map.containsKey(key)) {
                 val value = map[key]
                 if (value == null) {
