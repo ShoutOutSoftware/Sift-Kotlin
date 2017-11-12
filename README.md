@@ -52,7 +52,7 @@ task clean(type: Delete) {
 
 **Step 2 - Add the library to your project**
 
-Add the following line in your module's ```build.gradle``` file ```dependencies``` block.
+Add the following line in the ```dependencies``` block of your module's ```build.gradle``` file.
 
 ```
 compile 'com.shoutoutsoftware:sift:0.0.1'
