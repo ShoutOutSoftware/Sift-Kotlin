@@ -13,6 +13,11 @@ class Sift {
     fun readString(map: HashMap<String, Any?>, key: String, defaultValue: String?): String? = read(map, key, defaultValue)
 
     @Throws(SiftException::class)
+    fun readStringList(map: HashMap<String, Any?>, key: String): List<String> = read(map, key)
+
+    fun readStringList(map: HashMap<String, Any?>, key: String, defaultValue: List<String>?): List<String>? = read(map, key, defaultValue)
+
+    @Throws(SiftException::class)
     fun readNumber(map: HashMap<String, Any?>, key: String): Number = read(map, key)
 
     fun readNumber(map: HashMap<String, Any?>, key: String, defaultValue: Number?): Number? = read(map, key, defaultValue)
@@ -21,11 +26,6 @@ class Sift {
     fun readNumberList(map: HashMap<String, Any?>, key: String): List<Number> = read(map, key)
 
     fun readNumberList(map: HashMap<String, Any?>, key: String, defaultValue: List<Number>?): List<Number>? = read(map, key, defaultValue)
-
-    @Throws(SiftException::class)
-    fun readStringList(map: HashMap<String, Any?>, key: String): List<String> = read(map, key)
-
-    fun readStringList(map: HashMap<String, Any?>, key: String, defaultValue: List<String>?): List<String>? = read(map, key, defaultValue)
 
     @Throws(SiftException::class)
     fun readHashMap(map: HashMap<String, Any?>, key: String): HashMap<String, Any?> = read(map, key)

@@ -120,8 +120,6 @@ public class SiftTest {
         assertEquals("aMS1", sift.readString(parsedMapList.get(0), "arrayMap1String"));
         assertEquals(3, sift.readNumber(parsedMapList.get(1), "arrayMap2Int"));
         assertEquals(Arrays.asList("a", "b", "c"), sift.readStringList(parsedMapList.get(2), "arrayMap3Array"));
-
-
     }
 
 }
