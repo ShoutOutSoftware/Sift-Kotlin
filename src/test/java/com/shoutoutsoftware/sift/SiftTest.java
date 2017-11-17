@@ -34,7 +34,7 @@ public class SiftTest {
     }
 
     @Test(expected = SiftException.class)
-    public void testThrowsExceptionIfValueIsNotAString() throws SiftException {
+    public void testThrowsExceptionIfValueTypeIsWrong() throws SiftException {
         sift.readString(stringData, "wrongType");
     }
 
