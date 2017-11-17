@@ -59,20 +59,13 @@ class Sift {
         if (value == null) {
             throw SiftException("the value is null")
         } else {
-            return checkValType(value)
+            if (value is T) {
+                return value
+            } else {
+                throw SiftException("the value type is not the same as the requested one" +
+                        "\nRequested: " + T::class + "\nFound: " + value::class)
+            }
         }
-    }
-
-    @Throws(SiftException::class)
-    private inline fun <reified T : Any> checkValType(value: Any): T {
-
-        if (value is T) {
-            return value
-        } else {
-            throw SiftException("the value type is not the same as the requested one" +
-                    "\nRequested: " + T::class + "\nFound: " + value::class)
-        }
-
     }
 
 }
