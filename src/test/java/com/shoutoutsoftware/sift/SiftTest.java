@@ -44,7 +44,7 @@ public class SiftTest {
     }
 
     @Test
-    public void testStringIsReadSuccessfully() throws SiftException {
+    public void testValueIsReadSuccessfully() throws SiftException {
         String value = sift.readString(stringData, "correctValue");
         Assert.assertEquals(value, "some string");
     }
@@ -56,7 +56,7 @@ public class SiftTest {
     }
 
     @Test
-    public void testReturnsDefaultValueWhenValueIsNotAString() {
+    public void testReturnsDefaultValueWhenValueIsOfWrongType() {
         String value = sift.readString(stringData, "wrongType", "default val");
         Assert.assertEquals(value, "default val");
     }
@@ -68,13 +68,13 @@ public class SiftTest {
     }
 
     @Test
-    public void testDefaultValueIsIgnoredWhenStringIsReadSuccessfully() {
+    public void testDefaultValueIsIgnoredWhenValueIsReadSuccessfully() {
         String value = sift.readString(stringData, "correctValue", "default val");
         Assert.assertEquals(value, "some string");
     }
 
     @Test
-    public void testComplexMap() throws SiftException {
+    public void testReadValuesFromComplexMap() throws SiftException {
         HashMap<String, Object> data = new HashMap<>();
         data.put("null", null);
         data.put("int", 1);
