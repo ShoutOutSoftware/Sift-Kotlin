@@ -55,7 +55,7 @@ task clean(type: Delete) {
 Add the following line in the ```dependencies``` block of your module's ```build.gradle``` file.
 
 ```
-compile 'com.shoutoutsoftware:sift:0.0.1'
+compile 'com.shoutoutsoftware:sift:0.0.2'
 ```
 
 <br/>
@@ -80,7 +80,7 @@ android {
 }
 
 dependencies {
-    <b>compile 'com.shoutoutsoftware:sift:0.0.1'</b>
+    <b>compile 'com.shoutoutsoftware:sift:0.0.2'</b>
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     ...
