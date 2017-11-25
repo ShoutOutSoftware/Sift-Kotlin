@@ -50,7 +50,7 @@ allprojects {
 
 
 bintray {
-    user = 'shououtsoftware'
+    user = 'shoutoutsoftware'
     key = 'API_KEY'
     configurations = ['archives']
     pkg {
