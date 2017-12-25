@@ -19,8 +19,8 @@ import static junit.framework.TestCase.assertEquals;
 
 public class SiftTest {
 
-    private Sift sift = new Sift();
-    private final HashMap<String, Object> stringData = new HashMap<>();
+    private final Sift sift = new Sift();
+    private final Map<String, Object> stringData = new HashMap<>();
 
     @Before
     public void initData() {
@@ -110,17 +110,17 @@ public class SiftTest {
         assertEquals(Arrays.asList(1, 2, 3), sift.readNumberList(data, "intArray"));
         assertEquals(Arrays.asList("valOne", "valTwo", "valThree"), sift.readStringList(data, "stringArray"));
 
-        Map<String, Object> parsedInnerMap1 = sift.readMap(data, "innerMap");
+        Map parsedInnerMap1 = sift.readMap(data, "innerMap");
 
         assertEquals(innerMap1, parsedInnerMap1);
         assertEquals("inner1Val", sift.readString(parsedInnerMap1, "innerString"));
         assertEquals(Arrays.asList(1.2, 32.3, 32.4423), sift.readNumberList(parsedInnerMap1, "innerDoubleArray"));
 
-        List<Map<String, Object>> parsedMapList = sift.readMapList(data, "mapList");
+        List parsedMapList = sift.readMapList(data, "mapList");
         assertEquals(Arrays.asList(arrayMap1, arrayMap2, arrayMap3), parsedMapList);
-        assertEquals("aMS1", sift.readString(parsedMapList.get(0), "arrayMap1String"));
-        assertEquals(3, sift.readNumber(parsedMapList.get(1), "arrayMap2Int"));
-        assertEquals(Arrays.asList("a", "b", "c"), sift.readStringList(parsedMapList.get(2), "arrayMap3Array"));
+        assertEquals("aMS1", sift.readString((Map) parsedMapList.get(0), "arrayMap1String"));
+        assertEquals(3, sift.readNumber((Map) parsedMapList.get(1), "arrayMap2Int"));
+        assertEquals(Arrays.asList("a", "b", "c"), sift.readStringList((Map) parsedMapList.get(2), "arrayMap3Array"));
     }
 
 }
