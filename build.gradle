@@ -15,7 +15,7 @@ plugins {
 }
 
 group 'com.shoutoutsoftware'
-version '0.0.2'
+version '0.0.4'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -50,8 +50,8 @@ allprojects {
 
 
 bintray {
-    user = 'shououtsoftware'
-    key = 'API_KEY'
+    user = 'shoutoutsoftware'
+    key = 'ADD_KEY_HERE'
     configurations = ['archives']
     pkg {
         repo = 'libraries'
@@ -61,7 +61,7 @@ bintray {
         vcsUrl = 'https://github.com/ShoutOutSoftware/Sift-Kotlin.git'
         //noinspection GroovyAssignabilityCheck
         version {
-            name = '0.0.2'
+            name = '0.0.4'
             desc = 'A lightweight HashMap reading library'
         }
     }
