@@ -30,6 +30,11 @@ public class SiftTest {
     }
 
     @Test(expected = SiftException.class)
+    public void testThrowsExceptionWhenMapIsNull() throws SiftException {
+        sift.readString(null, "some random key");
+    }
+
+    @Test(expected = SiftException.class)
     public void testThrowsExceptionWhenKeyIsNotFound() throws SiftException {
         sift.readString(stringData, "some random key");
     }
