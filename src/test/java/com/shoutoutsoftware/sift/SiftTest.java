@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 
 
 /**
@@ -107,7 +108,7 @@ public class SiftTest {
 
         data.put("mapList", Arrays.asList(arrayMap1, arrayMap2, arrayMap3));
 
-        assertEquals(null, sift.readString(data, "null", null));
+        assertNull(sift.readString(data, "null", null));
         assertEquals(1, sift.readNumber(data, "int"));
         assertEquals("some string", sift.readString(data, "string"));
         assertEquals(2.1, sift.readNumber(data, "float"));

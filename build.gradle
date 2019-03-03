@@ -1,37 +1,19 @@
-buildscript {
-    ext.kotlin_version = '1.1.4-3'
-
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 plugins {
-    id "com.jfrog.bintray" version "1.7"
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.21'
+    id "com.jfrog.bintray" version "1.8.4"
 }
 
 group 'com.shoutoutsoftware'
-version '0.0.5'
-
-apply plugin: 'java'
-apply plugin: 'kotlin'
-
-compileJava {
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
-}
+version '0.0.6'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 compileKotlin {
@@ -45,9 +27,7 @@ allprojects {
     repositories {
         jcenter()
     }
-    apply plugin: 'java'
 }
-
 
 bintray {
     user = 'shoutoutsoftware'
