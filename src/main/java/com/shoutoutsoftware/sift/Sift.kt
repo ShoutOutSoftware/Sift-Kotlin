@@ -1,7 +1,7 @@
 package com.shoutoutsoftware.sift
 
 /**
- * Created by Obaid Ahmed Mohammed on 20 September 2017
+ * Created on 20 September 2017
  * Copyright © 2017 ShoutOut Software. All rights reserved.
  */
 

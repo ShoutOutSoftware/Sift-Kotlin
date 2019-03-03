@@ -12,9 +12,8 @@ import java.util.Map;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
 
-
 /**
- * Created by Obaid Ahmed Mohammed on 20 September 2017
+ * Created on 20 September 2017
  * Copyright © 2017 ShoutOut Software. All rights reserved.
  */
 

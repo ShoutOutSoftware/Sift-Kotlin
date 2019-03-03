@@ -1,9 +1,7 @@
 package com.shoutoutsoftware.sift
 
-import java.lang.Exception
-
 /**
- * Created by Obaid Ahmed Mohammed on 08 November 2017
+ * Created on 08 November 2017
  * Copyright © 2017 ShoutOut Software. All rights reserved.
  */
 
