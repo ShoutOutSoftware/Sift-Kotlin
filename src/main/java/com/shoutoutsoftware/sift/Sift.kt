@@ -37,6 +37,11 @@ class Sift {
 
     fun readMapList(map: Map<*, *>?, key: String, defaultValue: List<Map<*, *>>?): List<Map<*, *>>? = read(map, key, defaultValue)
 
+    @Throws(SiftException::class)
+    fun readBoolean(map: Map<*, *>?, key: String): Boolean = read(map, key)
+
+    fun readBoolean(map: Map<*, *>?, key: String, defaultValue: Boolean?): Boolean? = read(map, key, defaultValue)
+
     private inline fun <reified T : Any> read(map: Map<*, *>?, key: String, defaultValue: T?): T? {
         return try {
             read(map, key)

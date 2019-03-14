@@ -9,8 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNull;
+import static junit.framework.TestCase.*;
 
 /**
  * Created on 20 September 2017
@@ -87,6 +86,7 @@ public class SiftTest {
         data.put("string", "some string");
         data.put("float", 2.1);
         data.put("double", 12.432132213);
+        data.put("boolean", true);
         data.put("intArray", Arrays.asList(1, 2, 3));
         data.put("stringArray", Arrays.asList("valOne", "valTwo", "valThree"));
 
@@ -112,6 +112,7 @@ public class SiftTest {
         assertEquals("some string", sift.readString(data, "string"));
         assertEquals(2.1, sift.readNumber(data, "float"));
         assertEquals(12.432132213, sift.readNumber(data, "double"));
+        assertTrue(sift.readBoolean(data, "boolean"));
         assertEquals(Arrays.asList(1, 2, 3), sift.readNumberList(data, "intArray"));
         assertEquals(Arrays.asList("valOne", "valTwo", "valThree"), sift.readStringList(data, "stringArray"));
 
