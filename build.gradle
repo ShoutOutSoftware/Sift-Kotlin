@@ -41,7 +41,7 @@ bintray {
         vcsUrl = 'https://github.com/ShoutOutSoftware/Sift-Kotlin.git'
         //noinspection GroovyAssignabilityCheck
         version {
-            name = '0.0.7'
+            name = '0.0.8'
             desc = 'A lightweight HashMap reading library'
         }
     }

@@ -16,7 +16,7 @@ import static junit.framework.TestCase.*;
  * Copyright © 2017 ShoutOut Software. All rights reserved.
  */
 
-public class SiftTest {
+public class ReadFromDictionaryTests {
 
     private final Sift sift = new Sift();
     private final Map<String, Object> stringData = new HashMap<>();
@@ -28,24 +28,44 @@ public class SiftTest {
         stringData.put("correctValue", "some string");
     }
 
-    @Test(expected = SiftException.class)
-    public void testThrowsExceptionWhenMapIsNull() throws SiftException {
-        sift.readString(null, "some random key");
+    @Test
+    public void testThrowsExceptionWhenMapIsNull() {
+        try {
+            sift.readString(null, "some random key");
+            fail("did not throw an exception when expected");
+        } catch (SiftException exception) {
+            assertEquals(exception.getLocalizedMessage(), "the map is null");
+        }
     }
 
-    @Test(expected = SiftException.class)
-    public void testThrowsExceptionWhenKeyIsNotFound() throws SiftException {
-        sift.readString(stringData, "some random key");
+    @Test
+    public void testThrowsExceptionWhenKeyIsNotFound() {
+        try {
+            sift.readString(stringData, "some random key");
+            fail("did not throw an exception when expected");
+        } catch (SiftException exception) {
+            assertEquals(exception.getLocalizedMessage(), "key not found");
+        }
     }
 
-    @Test(expected = SiftException.class)
-    public void testThrowsExceptionIfValueTypeIsWrong() throws SiftException {
-        sift.readString(stringData, "wrongType");
+    @Test
+    public void testThrowsExceptionIfValueTypeIsWrong() {
+        try {
+            sift.readString(stringData, "wrongType");
+            fail("did not throw an exception when expected");
+        } catch (SiftException exception) {
+            assertEquals(exception.getLocalizedMessage(), "the value type is not the same as the requested one\nRequested: class java.lang.String (Kotlin reflection is not available)\nFound: class java.lang.Integer (Kotlin reflection is not available)");
+        }
     }
 
-    @Test(expected = SiftException.class)
-    public void testThrowsExceptionIfValueIsNull() throws SiftException {
-        sift.readString(stringData, "nullValue");
+    @Test
+    public void testThrowsExceptionIfValueIsNull() {
+        try {
+            sift.readString(stringData, "nullValue");
+            fail("did not throw an exception when expected");
+        } catch (SiftException exception) {
+            assertEquals(exception.getLocalizedMessage(), "the value is null");
+        }
     }
 
     @Test
@@ -116,17 +136,17 @@ public class SiftTest {
         assertEquals(Arrays.asList(1, 2, 3), sift.readNumberList(data, "intArray"));
         assertEquals(Arrays.asList("valOne", "valTwo", "valThree"), sift.readStringList(data, "stringArray"));
 
-        Map parsedInnerMap1 = sift.readMap(data, "innerMap");
+        Map<String, Object> parsedInnerMap1 = sift.readMap(data, "innerMap");
 
         assertEquals(innerMap1, parsedInnerMap1);
         assertEquals("inner1Val", sift.readString(parsedInnerMap1, "innerString"));
         assertEquals(Arrays.asList(1.2, 32.3, 32.4423), sift.readNumberList(parsedInnerMap1, "innerDoubleArray"));
 
-        List parsedMapList = sift.readMapList(data, "mapList");
+        List<Map<String, Object>> parsedMapList = sift.readMapList(data, "mapList");
         assertEquals(Arrays.asList(arrayMap1, arrayMap2, arrayMap3), parsedMapList);
-        assertEquals("aMS1", sift.readString((Map) parsedMapList.get(0), "arrayMap1String"));
-        assertEquals(3, sift.readNumber((Map) parsedMapList.get(1), "arrayMap2Int"));
-        assertEquals(Arrays.asList("a", "b", "c"), sift.readStringList((Map) parsedMapList.get(2), "arrayMap3Array"));
+        assertEquals("aMS1", sift.readString(parsedMapList.get(0), "arrayMap1String"));
+        assertEquals(3, sift.readNumber(parsedMapList.get(1), "arrayMap2Int"));
+        assertEquals(Arrays.asList("a", "b", "c"), sift.readStringList(parsedMapList.get(2), "arrayMap3Array"));
     }
 
 }
