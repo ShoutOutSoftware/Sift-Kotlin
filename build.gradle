@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'com.shoutoutsoftware'
-version '0.0.8'
+version '0.0.9'
 
 repositories {
     mavenCentral()
@@ -41,7 +41,7 @@ bintray {
         vcsUrl = 'https://github.com/ShoutOutSoftware/Sift-Kotlin.git'
         //noinspection GroovyAssignabilityCheck
         version {
-            name = '0.0.8'
+            name = '0.0.9'
             desc = 'A lightweight HashMap reading library'
         }
     }

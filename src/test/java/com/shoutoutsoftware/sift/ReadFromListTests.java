@@ -19,7 +19,7 @@ public class ReadFromListTests {
             sift.readString(null, 2);
             fail("did not throw an exception when expected");
         } catch (SiftException exception) {
-            assertEquals(exception.getLocalizedMessage(), "the list is null");
+            assertEquals(exception.getLocalizedMessage(), "The source list is null");
         }
     }
 
@@ -30,7 +30,7 @@ public class ReadFromListTests {
             sift.readString(list, null);
             fail("did not throw an exception when expected");
         } catch (SiftException exception) {
-            assertEquals(exception.getLocalizedMessage(), "the index is null");
+            assertEquals(exception.getLocalizedMessage(), "The index is null");
         }
     }
 
@@ -41,7 +41,7 @@ public class ReadFromListTests {
             sift.readString(list, 4);
             fail("did not throw an exception when expected");
         } catch (SiftException exception) {
-            assertEquals(exception.getLocalizedMessage(), "index 4 out of bounds");
+            assertEquals(exception.getLocalizedMessage(), "Index 4 out of bounds");
         }
     }
 
@@ -53,7 +53,7 @@ public class ReadFromListTests {
             sift.readString(list, 1);
             fail("did not throw an exception when expected");
         } catch (SiftException exception) {
-            assertEquals(exception.getLocalizedMessage(), "the value type is not the same as the requested one\nRequested: class java.lang.String (Kotlin reflection is not available)\nFound: class java.lang.Integer (Kotlin reflection is not available)");
+            assertEquals(exception.getLocalizedMessage(), "The value type is not the same as the requested one.\nIndex: 1\nRequested: class java.lang.String (Kotlin reflection is not available)\nFound: class java.lang.Integer (Kotlin reflection is not available)");
         }
     }
 
@@ -64,7 +64,7 @@ public class ReadFromListTests {
             sift.readString(list, 2);
             fail("did not throw an exception when expected");
         } catch (SiftException exception) {
-            assertEquals(exception.getLocalizedMessage(), "the value is null");
+            assertEquals(exception.getLocalizedMessage(), "The value is null for Index: 2");
         }
     }
 

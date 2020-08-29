@@ -34,7 +34,7 @@ public class ReadFromDictionaryTests {
             sift.readString(null, "some random key");
             fail("did not throw an exception when expected");
         } catch (SiftException exception) {
-            assertEquals(exception.getLocalizedMessage(), "the map is null");
+            assertEquals(exception.getLocalizedMessage(), "The source map is null");
         }
     }
 
@@ -44,7 +44,7 @@ public class ReadFromDictionaryTests {
             sift.readString(stringData, "some random key");
             fail("did not throw an exception when expected");
         } catch (SiftException exception) {
-            assertEquals(exception.getLocalizedMessage(), "key not found");
+            assertEquals(exception.getLocalizedMessage(), "Key: some random key not found");
         }
     }
 
@@ -54,7 +54,7 @@ public class ReadFromDictionaryTests {
             sift.readString(stringData, "wrongType");
             fail("did not throw an exception when expected");
         } catch (SiftException exception) {
-            assertEquals(exception.getLocalizedMessage(), "the value type is not the same as the requested one\nRequested: class java.lang.String (Kotlin reflection is not available)\nFound: class java.lang.Integer (Kotlin reflection is not available)");
+            assertEquals(exception.getLocalizedMessage(), "The value type is not the same as the requested one.\nKey: wrongType\nRequested: class java.lang.String (Kotlin reflection is not available)\nFound: class java.lang.Integer (Kotlin reflection is not available)");
         }
     }
 
@@ -64,7 +64,7 @@ public class ReadFromDictionaryTests {
             sift.readString(stringData, "nullValue");
             fail("did not throw an exception when expected");
         } catch (SiftException exception) {
-            assertEquals(exception.getLocalizedMessage(), "the value is null");
+            assertEquals(exception.getLocalizedMessage(), "The value is null for Key: nullValue");
         }
     }
 
