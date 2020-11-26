@@ -3,11 +3,6 @@ package com.shoutoutsoftware.sift
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * Created on 20 September 2017
- * Copyright © 2017 ShoutOut Software. All rights reserved.
- */
-
 class Sift {
 
     //MARK: Functions to read from dictionary
