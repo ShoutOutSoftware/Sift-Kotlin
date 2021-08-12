@@ -41,22 +41,31 @@ class Sift {
     fun readBoolean(fromMap: Map<String, Any?>?, key: String): Boolean = read(fromMap, key)
 
     fun readBoolean(fromMap: Map<String, Any?>?, key: String, defaultValue: Boolean?): Boolean? = read(fromMap, key, defaultValue)
+    
+    @Throws(SiftException::class)
+    fun readDate(fromMap: Map<String, Any?>?, key: String, dateFormat: String, defaultValue: Date?): Date? =
+            readDate(fromMap, key, dateFormat, TimeZone.getDefault(), defaultValue)
 
     @Throws(SiftException::class)
-    fun readDate(fromMap: Map<String, Any?>?, key: String, dateFormat: String, defaultValue: Date?): Date? {
+    fun readDate(fromMap: Map<String, Any?>?, key: String, dateFormat: String, timeZone: TimeZone, defaultValue: Date?): Date? {
         return try {
-            readDate(fromMap, key, dateFormat)
+            readDate(fromMap, key, dateFormat, timeZone)
         } catch (e: SiftException) {
             defaultValue
         }
     }
 
     @Throws(SiftException::class)
-    fun readDate(fromMap: Map<String, Any?>?, key: String, dateFormat: String): Date {
+    fun readDate(fromMap: Map<String, Any?>?, key: String, dateFormat: String): Date =
+            readDate(fromMap, key, dateFormat, TimeZone.getDefault())
+
+    @Throws(SiftException::class)
+    fun readDate(fromMap: Map<String, Any?>?, key: String, dateFormat: String, timeZone: TimeZone = TimeZone.getDefault()): Date {
         val dateString: String = read(fromMap, key)
 
         try {
             val dateFormatter = SimpleDateFormat(dateFormat)
+            dateFormatter.timeZone = timeZone
             return dateFormatter.parse(dateString)
         } catch (e: Exception) {
             throw SiftException("Failed to parse date for Key: $key, Date: $dateString, Format: $dateFormat")
