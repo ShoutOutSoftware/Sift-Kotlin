@@ -1,11 +1,14 @@
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.3.21'
-    id "com.jfrog.bintray" version "1.8.4"
 }
 
+apply plugin: 'maven'
+apply plugin: 'signing'
+
 group 'com.shoutoutsoftware'
-version '0.0.9'
+archivesBaseName = "sift"
+version '0.0.11'
 
 repositories {
     mavenCentral()
@@ -23,26 +26,67 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-allprojects {
-    repositories {
-        jcenter()
-    }
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
 }
 
-bintray {
-    user = 'shoutoutsoftware'
-    key = 'ADD_API_KEY'
-    configurations = ['archives']
-    pkg {
-        repo = 'libraries'
-        name = 'Sift'
-        userOrg = user
-        licenses = ['MIT']
-        vcsUrl = 'https://github.com/ShoutOutSoftware/Sift-Kotlin.git'
-        //noinspection GroovyAssignabilityCheck
-        version {
-            name = '0.0.9'
-            desc = 'A lightweight HashMap reading library'
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Sift'
+                packaging 'jar'
+                description 'A lightweight hash map reading library that can be used in Android, Java, and Kotlin projects'
+                url 'https://github.com/ShoutOutSoftware/Sift-Kotlin'
+
+                scm {
+                    connection 'scm:git:git://github.com/ShoutOutSoftware/Sift-Kotlin'
+                    developerConnection 'scm:git:git://github.com/ShoutOutSoftware'
+                    url 'https://github.com/ShoutOutSoftware/Sift-Kotlin'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'shoutoutsoftware'
+                        name 'ShoutOut Software'
+                        email 'contact@shoutoutsoftware.com'
+                        organization 'ShoutOut Software'
+                        organizationUrl 'https://www.shoutoutsoftware.com/'
+                    }
+                }
+            }
         }
     }
 }
+
