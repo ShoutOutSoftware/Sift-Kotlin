@@ -24,17 +24,6 @@ public class ReadFromListTests {
     }
 
     @Test
-    public void testThrowsExceptionIfIndexIsNull() {
-        List<String> list = Arrays.asList("hello", "hey", "hi");
-        try {
-            sift.readString(list, null);
-            fail("did not throw an exception when expected");
-        } catch (SiftException exception) {
-            assertEquals(exception.getLocalizedMessage(), "The index is null");
-        }
-    }
-
-    @Test
     public void testThrowsErrorIfIndexIsOutOfBounds() {
         List<String> list = Arrays.asList("hello", "hey", "hi");
         try {

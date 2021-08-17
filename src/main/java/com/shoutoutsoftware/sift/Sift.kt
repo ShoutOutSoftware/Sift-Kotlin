@@ -94,25 +94,25 @@ class Sift {
     //MARK: Functions to read from list
 
     @Throws(SiftException::class)
-    public fun readString(fromList: List<Any?>?, atIndex: Int?): String = readValue(fromList, atIndex)
+    public fun readString(fromList: List<Any?>?, atIndex: Int): String = readValue(fromList, atIndex)
 
-    public fun readString(fromList: List<Any?>?, atIndex: Int?, defaultValue: String?): String? =
+    public fun readString(fromList: List<Any?>?, atIndex: Int, defaultValue: String?): String? =
             readValue(fromList, atIndex, defaultValue)
 
     @Throws(SiftException::class)
-    public fun readNumber(fromList: List<Any?>?, atIndex: Int?): Number = readValue(fromList, atIndex)
+    public fun readNumber(fromList: List<Any?>?, atIndex: Int): Number = readValue(fromList, atIndex)
 
-    public fun readNumber(fromList: List<Any?>?, atIndex: Int?, defaultValue: Number?): Number? =
+    public fun readNumber(fromList: List<Any?>?, atIndex: Int, defaultValue: Number?): Number? =
             readValue(fromList, atIndex, defaultValue)
 
     @Throws(SiftException::class)
-    public fun readMap(fromList: List<Any?>?, atIndex: Int?): Map<String, Any?> = readValue(fromList, atIndex)
+    public fun readMap(fromList: List<Any?>?, atIndex: Int): Map<String, Any?> = readValue(fromList, atIndex)
 
-    public fun readMap(fromList: List<Any?>?, atIndex: Int?, defaultValue: Map<String, Any?>?): Map<String, Any?>? =
+    public fun readMap(fromList: List<Any?>?, atIndex: Int, defaultValue: Map<String, Any?>?): Map<String, Any?>? =
             readValue(fromList, atIndex, defaultValue)
 
     @Throws(SiftException::class)
-    private inline fun <reified T : Any> readValue(fromList: List<Any?>?, atIndex: Int?, defaultValue: T?): T? {
+    private inline fun <reified T : Any> readValue(fromList: List<Any?>?, atIndex: Int, defaultValue: T?): T? {
         return try {
             readValue(fromList, atIndex)
         } catch (e: SiftException) {
@@ -121,10 +121,8 @@ class Sift {
     }
 
     @Throws(SiftException::class)
-    private inline fun <reified T : Any> readValue(fromList: List<Any?>?, atIndex: Int?): T {
+    private inline fun <reified T : Any> readValue(fromList: List<Any?>?, atIndex: Int): T {
         if (fromList == null) throw SiftException("The source list is null")
-
-        if (atIndex == null) throw SiftException("The index is null")
 
         if (fromList.size > atIndex) {
             val value = fromList[atIndex]
